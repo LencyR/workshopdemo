@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="min-h-screen">
+    <nav class="navbar-container">
+      <div class="navbar-content">
+        <h1>My Gallery</h1>
+        <ul>
+          <li>
+            <a href="#gallery">Gallery</a>
+          </li>
+          <li>
+            <a href="#table">Table</a>
+          </li>
+          <li>
+            <a href="#blocks">Blocks</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <main class="main-container">
+      <div id="gallery" class="page-content">
+        <div class="gallery-container" id="gallery-container">
+        </div>
+      </div>
+      <div id="table" class="page-content hidden">
+        <div class="table-container">
+          <h1>HTML & CSS Basics</h1>
+          <div class="table-row header">
+            <div class="table-cell">Term</div>
+            <div class="table-cell">Description</div>
+          </div>
+          <div class="table-row">
+            <div class="table-cell">HTML</div>
+            <div class="table-cell">The standard markup language for creating web pages.</div>
+          </div>
+          <div class="table-row">
+            <div class="table-cell">CSS</div>
+            <div class="table-cell">A style sheet language used for describing the presentation of a document written in HTML.</div>
+          </div>
+          <div class="table-row">
+            <div class="table-cell">Flexbox</div>
+            <div class="table-cell">A layout model that allows for the design of complex layout structures with ease.</div>
+          </div>
+          <div class="table-row">
+            <div class="table-cell">JavaScript</div>
+            <div class="table-cell">A programming language that enables interactivity on web pages.</div>
+          </div>
+        </div>        
+      </div>
+      <div id="blocks" class="page-content hidden">
+        <div class="blocks-container">
+          <div class="block block-1">Flex Item 1</div>
+          <div class="block block-2">Flex Item 2</div>
+          <div class="block block-3">Flex Item 3</div>
+          <div class="block block-4">Flex Item 4</div>
+          <div class="block block-5">Flex Item 5</div>
+          <div class="block block-6">Flex Item 6</div>
+        </div>        
+      </div>
+    </main>
+
+    <script>
+      const galleryContainer = document.getElementById('gallery-container');
+      for (let index = 0; index < 4; index++) {
+            const img = document.createElement('img');
+            img.src = `https://picsum.photos/200/300?random=${index}`;
+            img.alt = `Random ${index}`;
+            img.className = 'gallery-image';
+            const item = document.createElement('div');
+            item.className = 'gallery-item';
+            item.appendChild(img);
+            galleryContainer.appendChild(item);
+        }
+      const secondRow = document.createElement('div');
+      secondRow.className = 'second-row';
+      for (let index = 4; index < 10; index++) {
+            const img = document.createElement('img');
+            img.src = `https://picsum.photos/200/300?random=${index}`;
+            img.alt = `Random ${index}`;
+            img.className = 'gallery-image';
+            const item = document.createElement('div');
+            item.className = 'gallery-item-two';
+            item.appendChild(img);
+            secondRow.appendChild(item);
+        }
+
+        galleryContainer.appendChild(secondRow)
+
+        function navigate() {
+        const hash = window.location.hash || '#gallery';
+        document.querySelectorAll('.page-content').forEach(page => {
+          page.classList.add('hidden');
+        });
+        const activePage = document.querySelector(hash);
+        if (activePage) {
+          activePage.classList.remove('hidden');
+        }
+      }
+
+      window.addEventListener('hashchange', navigate);
+      window.addEventListener('load', navigate);
+    </script>
+  </div>
+</body>
+</html>
